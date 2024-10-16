@@ -31,7 +31,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   void buttonPressed(String buttonText) {
     setState(() {
-      if (buttonText == "AC") {
+      if (buttonText == "C") {
         _expression = '';
         _result = '0';
         openParenthesisCount = 0; // Parantez durumu sıfırlansın
@@ -154,18 +154,18 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   Widget buildButton(String text, {Color? color, Color textColor = Colors.white}) {
     return SizedBox(
-      width: 80,
-      height: 80,
+      width: 90,
+      height: 90,
       child: ElevatedButton(
         onPressed: () => buttonPressed(text),
         style: ElevatedButton.styleFrom(
           shape: CircleBorder(),
-          backgroundColor: color ?? Colors.grey[800],
+          backgroundColor: color ?? Colors.grey[900],
           padding: const EdgeInsets.all(8.0),
         ),
         child: Text(
           text,
-          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: textColor),
+          style: TextStyle(fontSize: 35, color: textColor),
         ),
       ),
     );
@@ -173,20 +173,20 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   Widget buildDeleteButtonInExpressionArea() {
     return Positioned(
-      bottom: 20, // Sol alt köşeye yakın olacak şekilde
-      left: 50, // Sol tarafa hizalandı
+      bottom: 30, // Sol alt köşeye yakın olacak şekilde
+      right: 20, // Sağ tarafa hizalandı
       child: Container(
-        width: 40, // Boyut büyütüldü
-        height: 40,
+        width: 30, // Boyut büyütüldü
+        height: 30,
         decoration: BoxDecoration(
           color: Colors.transparent, // Şeffaf arka plan
         ),
         child: IconButton(
           padding: EdgeInsets.zero,
           icon: Icon(
-            Icons.backspace,
-            size: 24, // İkon boyutu büyütüldü
-            color: Colors.greenAccent[400],
+            Icons.backspace_outlined,
+            size: 25, // İkon boyutu büyütüldü
+            color: Colors.greenAccent,
           ),
           onPressed: () => buttonPressed("⌫"),
         ),
@@ -200,7 +200,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 8.0),
           child: Column(
             children: [
               // İşlem ve sonuç alanı
@@ -209,22 +209,22 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   children: [
                     Container(
                       alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      padding: EdgeInsets.only(bottom: 110.0, right: 20.0),
+
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
                             _expression,
-                            style: TextStyle(fontSize: 32, color: Colors.grey),
+                            style: TextStyle(fontSize: 45, color: Colors.white),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 60),
                           Text(
                             _result,
                             style: TextStyle(
-                                fontSize: 48,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                                fontSize: 35,
+                                color: Colors.greenAccent),
                           ),
                         ],
                       ),
@@ -240,50 +240,50 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildButton("AC", color: Colors.red),
-                      buildButton("+/-"),
-                      buildButton("%"),
-                      buildButton("÷", color: Colors.orange),
+                      buildButton("C", color: Colors.grey[800], textColor: Colors.red),
+                      buildButton("( )", color: Colors.grey[800], textColor: Colors.greenAccent),
+                      buildButton("%", color: Colors.grey[800], textColor: Colors.greenAccent),
+                      buildButton("÷", color: Colors.grey[800], textColor: Colors.greenAccent),
                     ],
                   ),
                   SizedBox(height: 6),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildButton("7"),
-                      buildButton("8"),
-                      buildButton("9"),
-                      buildButton("×", color: Colors.orange),
+                      buildButton("7", color: Colors.grey[900]),
+                      buildButton("8", color: Colors.grey[900]),
+                      buildButton("9", color: Colors.grey[900]),
+                      buildButton("×", color: Colors.grey[800], textColor: Colors.greenAccent),
                     ],
                   ),
                   SizedBox(height: 6),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildButton("4"),
-                      buildButton("5"),
-                      buildButton("6"),
-                      buildButton("-", color: Colors.orange),
+                      buildButton("4", color: Colors.grey[900]),
+                      buildButton("5", color: Colors.grey[900]),
+                      buildButton("6", color: Colors.grey[900]),
+                      buildButton("-", color: Colors.grey[800], textColor: Colors.greenAccent),
                     ],
                   ),
                   SizedBox(height: 6),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildButton("1"),
-                      buildButton("2"),
-                      buildButton("3"),
-                      buildButton("+", color: Colors.orange),
+                      buildButton("1", color: Colors.grey[900]),
+                      buildButton("2", color: Colors.grey[900]),
+                      buildButton("3", color: Colors.grey[900]),
+                      buildButton("+", color: Colors.grey[800], textColor: Colors.greenAccent),
                     ],
                   ),
                   SizedBox(height: 6),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildButton("0"),
-                      buildButton("."),
-                      buildButton("( )", color: Colors.blue),
-                      buildButton("=", color: Colors.grey), // Parantez butonu eklendi
+                      buildButton("+/-", color: Colors.grey[900]),
+                      buildButton("0", color: Colors.grey[900]),
+                      buildButton(".", color: Colors.grey[900]),
+                      buildButton("=", color: Colors.greenAccent),
                     ],
                   ),
                 ],
